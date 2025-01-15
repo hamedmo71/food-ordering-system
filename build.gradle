@@ -20,7 +20,13 @@ allprojects {
 subprojects {
     apply plugin: 'java'
 
-    sourceCompatibility = 21
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21) // Set to the desired Java version
+        }
+    }
+
+    /*targetCompatibility = 21*/
 
     dependencies {
         testImplementation platform('org.junit:junit-bom:5.10.0')

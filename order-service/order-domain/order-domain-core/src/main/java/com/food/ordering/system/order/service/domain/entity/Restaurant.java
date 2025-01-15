@@ -2,6 +2,7 @@ package com.food.ordering.system.order.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.AggregateRoot;
 import com.food.ordering.system.domain.valueobject.RestaurantId;
+import com.food.ordering.system.order.service.domain.exc.OrderDomainException;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public void validateRestaurant(Restaurant restaurant) {
+        if (!restaurant.isActive()){
+            throw new OrderDomainException("Restaurant with id " + restaurant.getId().getValue() + "is not valid.");
+        }
     }
 
 
