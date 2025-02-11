@@ -12,7 +12,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
     private boolean active;
 
     private Restaurant(Builder builder) {
-        super.setId(builder.id);
+        super.setId(builder.restaurantId);
         products = builder.products;
         active = builder.active;
     }
@@ -31,21 +31,20 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
         }
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public static final class Builder {
-        private RestaurantId id;
+        private RestaurantId restaurantId;
         private List<Product> products;
         private boolean active;
 
         private Builder() {
         }
 
-        public static Builder builder() {
-            return new Builder();
-        }
-
-        public Builder id(RestaurantId val) {
-            id = val;
+        public Builder restaurantId(RestaurantId val) {
+            restaurantId = val;
             return this;
         }
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
     @Override
-    public OrderCreatedEvent validateAdnInitiateOrder(Order order, Restaurant restaurant) {
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
         restaurant.validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
