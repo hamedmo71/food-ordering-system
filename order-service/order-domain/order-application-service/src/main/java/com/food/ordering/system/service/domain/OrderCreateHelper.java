@@ -35,13 +35,14 @@ public class OrderCreateHelper {
         this.orderDataMapper = orderDataMapper;
     }
 
-    public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand){
+    public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         Restaurant restaurant = checkRestaurant(createOrderCommand);
         Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
         final OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+        Order savedOrder = saveOrder(order);
 
-        log.info("Order created event with id: {}", orderCreatedEvent.getOrder().getId().getValue());
+        log.info("Order created event with id: {}", savedOrder.getId().getValue());
         return orderCreatedEvent;
     }
 
@@ -49,19 +50,29 @@ public class OrderCreateHelper {
     private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {
         final Restaurant restaurant = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
         Optional<Restaurant> restaurantInformation = restaurantRepository.findRestaurant(restaurant.getId().getValue());
-        if (restaurantInformation.isEmpty()){
+        if (restaurantInformation.isEmpty()) {
             UUID restaurantId = createOrderCommand.getRestaurantId();
             log.warn("Could not find restaurant with {}", restaurantId);
-            throw new OrderDomainException("Could not find restaurant with "+ restaurantId);
+            throw new OrderDomainException("Could not find restaurant with " + restaurantId);
         }
         return restaurantInformation.get();
     }
 
     private void checkCustomer(UUID customerId) {
         Optional<Customer> customer = customerRepository.findCustomer(customerId);
-        if (customer.isEmpty()){
+        if (customer.isEmpty()) {
             log.warn("Could not find customer with {}", customerId);
-            throw new OrderDomainException("Could not find customer with "+ customerId);
+            throw new OrderDomainException("Could not find customer with " + customerId);
         }
+    }
+
+    private Order saveOrder(Order order) {
+        final Order orderResult = orderRepository.save(order);
+        if (orderResult == null) {
+            log.error("Could not save order: {}", order);
+            throw new OrderDomainException("Could not save order");
+        }
+        log.info("Order saved with id: {}", orderResult.getId().getValue());
+        return orderResult;
     }
 }

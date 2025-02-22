@@ -1,6 +1,5 @@
 package com.food.ordering.system.service.domain.dto.create;
 
-import com.food.ordering.system.domain.valueobject.ProductId;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,11 +14,11 @@ import java.util.UUID;
 public class OrderItem {
 
     @NotNull
-    private final ProductId productId;
+    private final UUID productId;
     @NotNull
     private final Integer quantity;
     @NotNull
     private final BigDecimal price;
     @NotNull
-    private final BigDecimal subtotal;
+    private final BigDecimal subTotal;
 }

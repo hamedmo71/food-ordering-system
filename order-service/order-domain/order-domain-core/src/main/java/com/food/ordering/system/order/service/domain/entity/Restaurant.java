@@ -27,7 +27,7 @@ public class Restaurant extends AggregateRoot<RestaurantId> {
 
     public void validateRestaurant(Restaurant restaurant) {
         if (!restaurant.isActive()){
-            throw new OrderDomainException("Restaurant with id " + restaurant.getId().getValue() + "is not valid.");
+            throw new OrderDomainException("Restaurant with id " + restaurant.getId().getValue() + " currently is not active.");
         }
     }
 
