@@ -1,8 +1,8 @@
 package com.food.ordering.system.order.service.domain;
 
-import com.food.ordering.system.service.domain.ports.output.publisher.payment.OrderCancelledPaymentRequestPublisher;
-import com.food.ordering.system.service.domain.ports.output.publisher.payment.OrderCreatedPaymentRequestPublisher;
-import com.food.ordering.system.service.domain.ports.output.publisher.restaurant.OrderPaidRestaurantRequestMessagePublisher;
+import com.food.ordering.system.service.domain.ports.output.messaging.publisher.payment.OrderCancelledPaymentRequestPublisher;
+import com.food.ordering.system.service.domain.ports.output.messaging.publisher.payment.OrderCreatedPaymentRequestPublisher;
+import com.food.ordering.system.service.domain.ports.output.messaging.publisher.restaurant.OrderPaidRestaurantRequestMessagePublisher;
 import com.food.ordering.system.service.domain.ports.output.repository.CustomerRepository;
 import com.food.ordering.system.service.domain.ports.output.repository.OrderRepository;
 import com.food.ordering.system.service.domain.ports.output.repository.RestaurantRepository;

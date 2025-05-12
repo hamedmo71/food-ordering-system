@@ -4,7 +4,7 @@ import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.system.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.system.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.service.domain.mapper.OrderDataMapper;
-import com.food.ordering.system.service.domain.ports.output.publisher.payment.OrderCreatedPaymentRequestPublisher;
+import com.food.ordering.system.service.domain.ports.output.messaging.publisher.payment.OrderCreatedPaymentRequestPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
