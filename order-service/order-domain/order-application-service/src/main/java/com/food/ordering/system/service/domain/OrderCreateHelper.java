@@ -49,7 +49,7 @@ public class OrderCreateHelper {
 
     private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {
         final Restaurant restaurant = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
-        Optional<Restaurant> restaurantInformation = restaurantRepository.findRestaurant(restaurant.getId().getValue());
+        Optional<Restaurant> restaurantInformation = restaurantRepository.findRestaurant(restaurant);
         if (restaurantInformation.isEmpty()) {
             UUID restaurantId = createOrderCommand.getRestaurantId();
             log.warn("Could not find restaurant with {}", restaurantId);
