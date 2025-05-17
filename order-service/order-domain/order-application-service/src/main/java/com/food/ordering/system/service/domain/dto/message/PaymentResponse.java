@@ -18,9 +18,10 @@ public class PaymentResponse {
     private String sagaId;
     private String paymentId;
     private String customerId;
+    private String orderId;
     private BigDecimal price;
     private Instant createdAt;
     private PaymentStatus paymentStatus;
-    private List<String> failureMessage;
+    private List<String> failureMessages;
     
 }

@@ -1,7 +1,6 @@
 package com.food.ordering.system.service.domain.dto.message;
 
 import com.food.ordering.system.domain.valueobject.OrderApprovalStatus;
-import com.food.ordering.system.domain.valueobject.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import java.util.List;
 @Builder
 @Getter
 @AllArgsConstructor
-public class RestaurantApproavalResponse {
+public class RestaurantApprovalResponse {
 
     private String id;
     private String sagaId;
@@ -22,6 +21,6 @@ public class RestaurantApproavalResponse {
     private BigDecimal price;
     private Instant createdAt;
     private OrderApprovalStatus orderApprovalStatus;
-    private List<String> failureMessage;
+    private List<String> failureMessages;
     
 }

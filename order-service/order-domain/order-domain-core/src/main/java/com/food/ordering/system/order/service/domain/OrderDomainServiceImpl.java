@@ -25,7 +25,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     private void setOrderProductInformation(Order order, Restaurant restaurant) {
-        // TODO: I must write it whit HashMap
+        // TODO: I must write it with HashMap
         order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(product -> {
             Product currentProduct = orderItem.getProduct();
             if (currentProduct.equals(product)) {

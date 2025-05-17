@@ -40,4 +40,5 @@ include 'infrastructure:kafka:kafka-producer'
 findProject(':infrastructure:kafka:kafka-producer')?.name = 'kafka-producer'
 include 'common:common-application'
 findProject(':common:common-application')?.name = 'common-application'
+include 'customer-service'
 
