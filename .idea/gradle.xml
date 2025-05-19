@@ -27,6 +27,16 @@
             <option value="$PROJECT_DIR$/order-service/order-domain/order-application-service" />
             <option value="$PROJECT_DIR$/order-service/order-domain/order-domain-core" />
             <option value="$PROJECT_DIR$/order-service/order-messaging" />
+            <option value="$PROJECT_DIR$/payment-service" />
+            <option value="$PROJECT_DIR$/payment-service/payment-container" />
+            <option value="$PROJECT_DIR$/payment-service/payment-dataaccess" />
+            <option value="$PROJECT_DIR$/payment-service/payment-domain" />
+            <option value="$PROJECT_DIR$/payment-service/payment-domain/payment-application-service" />
+            <option value="$PROJECT_DIR$/payment-service/payment-domain/payment-domain-core" />
+            <option value="$PROJECT_DIR$/payment-service/payment-messaging" />
+            <option value="$PROJECT_DIR$/restaurant-service" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-container" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-dataaccess" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -8,6 +8,7 @@ import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.system.order.service.domain.exc.OrderDomainException;
 import com.food.ordering.system.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.system.service.domain.mapper.OrderDataMapper;
+import com.food.ordering.system.service.domain.ports.output.messaging.publisher.payment.OrderCreatedPaymentRequestPublisher;
 import com.food.ordering.system.service.domain.ports.output.repository.CustomerRepository;
 import com.food.ordering.system.service.domain.ports.output.repository.OrderRepository;
 import com.food.ordering.system.service.domain.ports.output.repository.RestaurantRepository;
@@ -26,20 +27,23 @@ public class OrderCreateHelper {
     private final RestaurantRepository restaurantRepository;
     private final CustomerRepository customerRepository;
     private final OrderDataMapper orderDataMapper;
+    private final OrderCreatedPaymentRequestPublisher orderCreatedEventDomainEventPublisher;
 
-    public OrderCreateHelper(OrderDomainService orderDomainService, OrderRepository orderRepository, RestaurantRepository restaurantRepository, CustomerRepository customerRepository, OrderDataMapper orderDataMapper) {
+
+    public OrderCreateHelper(OrderDomainService orderDomainService, OrderRepository orderRepository, RestaurantRepository restaurantRepository, CustomerRepository customerRepository, OrderDataMapper orderDataMapper, OrderCreatedPaymentRequestPublisher orderCreatedEventDomainEventPublisher) {
         this.orderDomainService = orderDomainService;
         this.orderRepository = orderRepository;
         this.restaurantRepository = restaurantRepository;
         this.customerRepository = customerRepository;
         this.orderDataMapper = orderDataMapper;
+        this.orderCreatedEventDomainEventPublisher = orderCreatedEventDomainEventPublisher;
     }
 
     public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         Restaurant restaurant = checkRestaurant(createOrderCommand);
         Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
-        final OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+        final OrderCreatedEvent orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant,orderCreatedEventDomainEventPublisher);
         Order savedOrder = saveOrder(order);
 
         log.info("Order created event with id: {}", savedOrder.getId().getValue());
