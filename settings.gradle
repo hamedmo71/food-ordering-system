@@ -73,4 +73,8 @@ include 'restaurant-service:restaurant-domain:restaurant-domain-core'
 findProject(':restaurant-service:restaurant-domain:restaurant-domain-core')?.name = 'restaurant-domain-core'
 include 'common:common-dataaccess'
 findProject(':common:common-dataaccess')?.name = 'common-dataaccess'
+include 'infrastructure:saga'
+findProject(':infrastructure:saga')?.name = 'saga'
+include 'infrastructure:saga'
+findProject(':infrastructure:saga')?.name = 'saga'
 

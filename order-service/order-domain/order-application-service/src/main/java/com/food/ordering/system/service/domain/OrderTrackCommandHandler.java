@@ -10,6 +10,7 @@ import com.food.ordering.system.service.domain.mapper.OrderDataMapper;
 import com.food.ordering.system.service.domain.ports.output.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class OrderTrackCommandHandler {
         this.orderDataMapper = orderDataMapper;
     }
 
+    @Transactional
     public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery){
         Optional<Order> orderByTrackingId = repository.findByTrackingId(new TrackingId(trackOrderQuery.getOrderTrackingId()));
         if (orderByTrackingId.isEmpty()){
